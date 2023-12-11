@@ -17,7 +17,7 @@ const submitHndlr = event => {
     }
 
     axios.post(`${weatherURL}`, body)
-    .then(displayWeather)
+    .then(displayWeather())
     .catch(console.log('error'));
 };
 
