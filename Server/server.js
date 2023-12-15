@@ -23,51 +23,49 @@ app.post('/api/weather', (req, res) => {
         
     console.log("server side:", params.city, params.state);
 
-    axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${params.city}, ${params.state}&limit=5&appid=${KEY}`, {
+    axios.get(url, {
         params: {
             city: params.city,
             state: params.state
         }
-    })
-    .then(response => {
-
-        console.log("first response:", response);
-
-        if(response.dara.lat && response.data.lon) {
-            const lat = response.data[0].lat;
-            const lon = response.data[0].lon;
-            const exclude = `minutely,hourly,daily,alerts`;
-
+    }
+    )
+    .then( response => {
+        const lat = response.data.lat;
+        const lon = response.data.lon;
+        const exclude = `minutely,hourly,daily,alerts`;
         
-        axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${KEY_TWO}`, {
+        axios.get(weatherURL, {
             params: {
-                lat: params.lat,
-                lon: params.lon,
+                lat,
+                lon,
                 exclude,
                 KEY
             }
         })
-        // console.log(params)
         .then(weatherResponse => {
-            console.log("second API response:", weatherResponse);
-                        
-            const currentWeather = weatherResponse.data.value;
-            console.log("current weather", currentWeather);
-            res.send(currentWeather);
-        })
-        .catch(err => {
-            console.error("Error in second Axios request:", err);
-            res.status(500).send('Internal Server Error');
-        })
-        } else {
-            res.status(500).send('Internal Server Error')
-    }})
-    .catch(err => {
-        // console.error("Error in first Axios request:", err);
-        res.status(500).send('Internal Server Error');
-    });
-});
+                console.log("second axios request:", params)
 
+                console.log(weatherResponse);
+                
+                const currentWeather = weatherResponse.data;
+                
+                console.log(currentWeather);
+                res.send(currentWeather);
+            }) 
+        .catch(err => {
+        res.status(500).send('Internal Server Error')})
+})})
+
+// const lat = response.lat
+// const lon = response.lon
+// const exclude = `minutely, hourly, daily, alerts`
+// axios.get(weatherURL, res)
+// .then(res => {
+//     const currentWeather = res.data
+//     console.log(currentWeather)
+//     res.send(currentWeather)
+// })
 
 
 // app.post('/api/weather', (req, res) => {
@@ -75,48 +73,49 @@ app.post('/api/weather', (req, res) => {
         
 //     console.log("server side:", params.city, params.state);
 
-//     axios.get(url, {
+//     axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${params.city}, ${params.state}&limit=5&appid=${KEY}`, {
 //         params: {
 //             city: params.city,
 //             state: params.state
 //         }
-//     }
-//     )
-//     .then( response => {
-//         const lat = response.data.lat;
-//         const lon = response.data.lon;
-//         const exclude = `minutely,hourly,daily,alerts`;
+//     })
+//     .then(response => {
+
+//         console.log("first response:", response);
+
+//         if(response.dara.lat && response.data.lon) {
+//             const lat = response.data[0].lat;
+//             const lon = response.data[0].lon;
+//             const exclude = `minutely,hourly,daily,alerts`;
+
         
-//         axios.get(weatherURL, {
-//             params: {
-//                 lat,
-//                 lon,
-//                 exclude,
-//                 KEY
-//             }
+//         axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${KEY_TWO}`, {
+//             // params: {
+//             //     lat: params.lat,
+//             //     lon: params.lon,
+//             //     exclude,
+//             //     KEY
+//             // }
 //         })
+//         // console.log(params)
 //         .then(weatherResponse => {
-//                 console.log("second axios request:", params)
-
-//                 console.log(weatherResponse);
-                
-//                 const currentWeather = weatherResponse.data;
-                
-//                 console.log(currentWeather);
-//                 res.send(currentWeather);
-//             }) 
+//             console.log("second API response:", weatherResponse);
+                        
+//             const currentWeather = weatherResponse.data.value;
+//             console.log("current weather", currentWeather);
+//             res.send(currentWeather);
+//         })
 //         .catch(err => {
-//         res.status(500).send('Internal Server Error')})
-// })})
-
-            // const lat = response.lat
-            // const lon = response.lon
-            // const exclude = `minutely, hourly, daily, alerts`
-            // axios.get(weatherURL, res)
-            // .then(res => {
-            //     const currentWeather = res.data
-            //     console.log(currentWeather)
-            //     res.send(currentWeather)
-            // })
+//             console.error("Error in second Axios request:", err);
+//             res.status(500).send('Internal Server Error');
+//         })
+//         } else {
+//             res.status(500).send('Internal Server Error')
+//     }})
+//     .catch(err => {
+//         // console.error("Error in first Axios request:", err);
+//         res.status(500).send('Internal Server Error');
+//     });
+// });
 
 app.listen(SERVER_PORT, () => console.log(`Running on ${SERVER_PORT}`))
