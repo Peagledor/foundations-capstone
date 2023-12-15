@@ -15,15 +15,17 @@ const submitHndlr = event => {
 
     let body = {
         city: cityInput.value,
-        state:stateInput.value
+        state: stateInput.value
     }
 
     axios.post(`${weatherURL}`, body)
     .then(response => {
         displayWeather(response.data);
     })
-    .catch(error => console.log('error'));
-};
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
 const displayWeather = data => {
     const cardContainer = document.querySelector('.card-container');
@@ -35,4 +37,4 @@ const displayWeather = data => {
     console.log(data);
 }
 
-form.addEventListener('submit', submitHndlr);
+form.addEventListener('submit', submitHndlr)
