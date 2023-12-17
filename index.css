@@ -3,16 +3,16 @@
 } */
 
 form {
-    display: flex;
-    justify-content: center;
-  }
+   display: flex;
+   justify-content: center;
+}
   
-  header {
-    display: flex;
-    justify-content: center;
-  }
+header {
+   display: flex;
+   justify-content: center;
+}
   
-  .card-container {
+.card-body {
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -21,15 +21,12 @@ form {
     background: #838383;
     box-shadow: 0px 0px 21px 14px rgba(168, 168, 168, 1);
     margin: 50px;
-  }
+}
   
-  .card-img-top {
-    display: flex;
-    justify-items: center;
-  }
+.card-img-top {
+   display: flex;
+   justify-items: center;
+}
   
-  .card-body {
-    display: flex;
-    flex-direction: column;
-  }
+
   
