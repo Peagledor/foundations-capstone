@@ -37,11 +37,7 @@ const displayWeather = data => { // takes in response data
     //Need to make function that selects specific data to display. probably outside of this one 
     
     const dataStr = JSON.stringify(weatherData) //takes in the passed in weather data and converts it to a string
-    console.log("data string:", dataStr) // logs
-
-    
-
-    weatherCard.innerHTML = `<p>${dataStr}</p>` // turns data string to html string
+    console.log("data string:", dataStr) // logs   
 
     cardContainer.appendChild(weatherCard); // creates weather card iside the card container
     

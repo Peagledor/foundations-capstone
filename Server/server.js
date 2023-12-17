@@ -3,12 +3,10 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const cors = require('cors');
-// const path = require('path');
 
 
 const KEY = '662a129c5b90d8e37ab11bad63eab67f';
-// const KEY_TWO = 'abe81164b6408f7f78955541dba4dd84'
-// const url = `http://api.openweathermap.org/geo/1.0/direct?q=${`params.city`}, ${`params.state`}&limit=5&appid=${KEY}`;
+// const zipURL = `http://api.openweathermap.org/geo/1.0/zip?zip=80205&appid=abe81164b6408f7f78955541dba4dd84`;
 // const weatherURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${`lat`}&lon=${`lon`}&exclude=${`exclude`}&appid=${KEY_TWO}`;
 
 // const fns = require('./controller');
