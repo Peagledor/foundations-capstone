@@ -11,7 +11,6 @@ const KEY = '662a129c5b90d8e37ab11bad63eab67f';
 
 // const fns = require('./controller');
 
-// app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(cors());
 
@@ -22,7 +21,7 @@ app.post('/api/weather', (req, res) => {
         
     console.log("server side:", params);
 
-    axios.get('http://api.openweathermap.org/geo/1.0/zip?zip=80205&appid=abe81164b6408f7f78955541dba4dd84')
+    const getLocData = axios.get('http://api.openweathermap.org/geo/1.0/zip?zip=80205&appid=abe81164b6408f7f78955541dba4dd84')
     .then( response => {
         console.log("first response:", response.data);
         const data = response.data;
