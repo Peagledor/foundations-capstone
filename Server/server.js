@@ -35,10 +35,11 @@ app.post('/api/weather', (req, res) => {
         .then(weatherRes => {
             console.log("weather response:", weatherRes.data)
     
-            const currentWeather = {
-                current: weatherRes.data.current
-            }
-        
+            const currentWeather = weatherRes.data.current          
+              
+            console.log('data:', data);
+            currentWeather.city = data.name;
+
             console.log('current weather:', currentWeather);
             res.send(currentWeather);
         })
@@ -48,6 +49,9 @@ app.post('/api/weather', (req, res) => {
         res.status(500).send('Internal Server Error')
     }
 )})
+
+//display weather for saved locations
+// app.post('/api/saved', (req, res) => {}
 
 
 app.listen(SERVER_PORT, () => console.log(`Running on ${SERVER_PORT}`))

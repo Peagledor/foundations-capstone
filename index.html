@@ -21,26 +21,28 @@
         <button>Go</button>
     </form>
 
+
     <section class="card-container">
-        <!-- <div id="card-body">
-            <h4 class="card-title">Date</h4>
-            <img src="https://openweathermap.org/img/wn/03n@4x.png"
+        <!-- <div class ="card-body">
+            <h4 class="card-date">${dt.toDateString()}</h4>
+            <img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png"
             class="card-img-top"
-            alt = "Weather description"/>
-                <h3 class="city-label">City Label </h3>
+            alt =${weatherData.weather[0].description}/>
+            <h3 class="card-title">${weatherData.temp}&deg;F</h3> 
+                <h3 class="main-label">${weatherData.weather[0].main}</h3>
                 <div class="text-body">
-                    <p class="card-text">High:00  Low:00</p>
-                    <p class="card-text">High Feels like</p>
-                    <p class="card-text">Pressure </p>
-                    <p class="card-text">Humidity </p>
-                    <p class="card-text">UV Index </p>
-                    <p class="card-text">Precipitation </p>
-                    <p class="card-text">Dewpoint </p>
-                    <p class="card-text">Wind </p>
-                    <p class="card-text">Sunrise </p>
-                    <p class="card-text">Sunset </p>
+                    <p class="card-text">Sunrise: ${sunrise}</p>
+                    <p class="card-text">Sunset: ${sunset}</p>
+                    <p class="card-text">Pressure: ${weatherData.pressure}mb</p>
+                    <p class="card-text">Humidity: ${weatherData.humidity}%</p>
+                    <p class="card-text">UV Index: ${weatherData.uvi}</p>
+                    <p class="card-text">Dewpoint: ${weatherData.dew_point}</p>
+                    <p class="card-text">Wind: ${weatherData.wind_speed}m/s, ${weatherData.wind_deg}&deg;</p>
                 </div>            
-        </div> -->
+            </div>`;  -->
+            <aside>
+                    <p class="saved-location" value=80205>Denver</p>
+            </aside>   
     </section>
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -49,4 +51,7 @@
     <script src="index.js"></script>
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </body>
+<footer>
+
+</footer>
 </html>

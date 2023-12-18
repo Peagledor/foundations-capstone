@@ -18,14 +18,17 @@ header {
    justify-content: center;
 }
 
+
+
 .card-container{
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
   
 .card-body {
     border-radius: 50px;
-    width: 50vw;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +36,20 @@ header {
     background: #838383;
     box-shadow: 0px 0px 21px 14px rgba(168, 168, 168, 1);
     margin: 50px;
+}
+
+aside{
+    border-radius: 20px;
+    width: 150px;
+    height: min-content;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    /* align-items: center; */
+    background: #838383;
+    box-shadow: 0px 0px 21px 14px rgba(168, 168, 168, 1);
+    margin: 50px;
+    cursor: pointer;
 }
   
 .card-img-top {
