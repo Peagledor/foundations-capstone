@@ -36,7 +36,7 @@ app.post('/api/weather', (req, res) => {
             console.log("weather response:", weatherRes.data)
     
             const currentWeather = {
-                current: weatherRes.data//.current
+                current: weatherRes.data.current
             }
         
             console.log('current weather:', currentWeather);
