@@ -13,7 +13,7 @@ app.post('/api/weather', (req, res) => {
  
     const params = req.body;
     const zip = params.zipCode;
-    console.log("server side:", params);
+    // console.log("server side:", params);
     
     const key = 'abe81164b6408f7f78955541dba4dd84'
     const exclude = `minutely,hourly,daily,alerts`;
@@ -22,26 +22,26 @@ app.post('/api/weather', (req, res) => {
 
     axios.get(zipURL)
     .then( response => {
-        console.log("first response:", response.data);
+        // console.log("first response:", response.data);
         const data = response.data;
         const lat = data.lat;
         const lon = data.lon;
-        console.log(`coords:`, lat , lon)
+        // console.log(`coords:`, lat , lon)
         
         const weatherURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${key}&units=imperial`;
-        console.log(`URL:`, weatherURL)
+        // console.log(`URL:`, weatherURL)
 
         return axios.get(weatherURL)
         .then(weatherRes => {
-            console.log("weather response:", weatherRes.data)
+            // console.log("weather response:", weatherRes.data)
     
             const currentWeather = weatherRes.data.current          
               
-            console.log('data:', data);
+            // console.log('data:', data);
             currentWeather.city = data.name;
             currentWeather.zip = data.zip;
 
-            console.log('current weather:', currentWeather);
+            // console.log('current weather:', currentWeather);
             res.send(currentWeather);
         })
     }) 
@@ -50,9 +50,5 @@ app.post('/api/weather', (req, res) => {
         res.status(500).send('Internal Server Error')
     }
 )})
-
-//display weather for saved locations
-// app.post('/api/saved', (req, res) => {}
-
 
 app.listen(SERVER_PORT, () => console.log(`Running on ${SERVER_PORT}`))

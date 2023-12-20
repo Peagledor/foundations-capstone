@@ -4,50 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+    <body>
     
-    <header>
-        <h1>zippyWeather</h1>
-    </header>
-    
+        <header>
+            <h1>zippyWeather</h1>
+        </header>
 
-    <form name="location-form">
-        <input id="zip-input" placeholder="zip code">
-        <button>Go</button>
-    </form>
-
-
-    <section class="card-container">
-        <!-- <div class ="card-body">
-            <h4 class="card-date">${dt.toDateString()}</h4>
-            <img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png"
-            class="card-img-top"
-            alt =${weatherData.weather[0].description}/>
-            <h3 class="card-title">${weatherData.temp}&deg;F</h3> 
-                <h3 class="main-label">${weatherData.weather[0].main}</h3>
-                <div class="text-body">
-                    <p class="card-text">Sunrise: ${sunrise}</p>
-                    <p class="card-text">Sunset: ${sunset}</p>
-                    <p class="card-text">Pressure: ${weatherData.pressure}mb</p>
-                    <p class="card-text">Humidity: ${weatherData.humidity}%</p>
-                    <p class="card-text">UV Index: ${weatherData.uvi}</p>
-                    <p class="card-text">Dewpoint: ${weatherData.dew_point}</p>
-                    <p class="card-text">Wind: ${weatherData.wind_speed}m/s, ${weatherData.wind_deg}&deg;</p>
-                </div>            
-            </div>`;  -->
+        <form name="location-form">
+            <input id="zip-input" placeholder="zip code">
+            <button style="width:50px">Go</button>
+        </form>
+        
+        
+        <section class="saved-container">
+            
         </section>
-        <aside class="saved-container">
-                <p class="saved-location" value=80205>Denver</p>
-        </aside>   
-    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
-    <script src="index.js"></script>
-</body>
-<footer>
 
-</footer>
+        <section class="card-container">
+            
+        </section>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+        <script src="index.js"></script>
+    </body>
 </html>
