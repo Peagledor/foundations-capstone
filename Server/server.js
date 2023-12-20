@@ -39,6 +39,7 @@ app.post('/api/weather', (req, res) => {
               
             console.log('data:', data);
             currentWeather.city = data.name;
+            currentWeather.zip = data.zip;
 
             console.log('current weather:', currentWeather);
             res.send(currentWeather);

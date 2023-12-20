@@ -1,7 +1,12 @@
 const zipInput = document.querySelector('#zip-input');
 const cardContainer = document.querySelector('.card-container')
 const form = document.querySelector('form');
-const saved = document.querySelector('.saved-location');
+// const savedCard = document.querySelector('.saved-card'); // will need this to grab data when clicking button to retrieve data.
+const saveBtn = document.querySelector('.save-button');
+const savedLocBtn = document.querySelector('.saved-location')
+const savedContainer = document.querySelector('.saved-container')
+
+
 let weatherCard;
 
 const weatherURL = `http://localhost:4004/api/weather`;
@@ -32,7 +37,6 @@ const submitHndlr = event => {
 const displayWeather = data => { // takes in response data
     if(!weatherCard){
         weatherCard = document.createElement('div'); // creates html div inside card container
-        weatherCard.classList.add(".card-body");
     }
     weatherData = data
     // console.log("passed in data:", weatherData) // Remove logs 
@@ -57,46 +61,55 @@ const displayWeather = data => { // takes in response data
             <p class="card-text">UV Index: ${weatherData.uvi}</p>
             <p class="card-text">Dewpoint: ${weatherData.dew_point}</p>
             <p class="card-text">Wind: ${weatherData.wind_speed}m/s, ${weatherData.wind_deg}&deg;</p>
-        </div>            
+        </div>
+        <button value="${weatherData.zip}" name="${weatherData.city}" class="save-button">Save Location</button>
     </div>`;    
 
     cardContainer.appendChild(weatherCard);    
-}
+};
 
-const getSaved = event => {
-    let body = 80205;
-
-    axios.post(`${weatherURL}`, body)
-    .then(response => {
-            console.log("received response:", response)
-
-            weatherData = response.data;
-
-            displayWeather(weatherData)
+const getSaved = e => { //need to see if I can build this function ouside the event listener. working for now.
+        const data = e.target.value;
+        const zip = data
+        console.log("zip:", zip)
+        let body = {
+            zipCode: zip
         }
-    )
-    .catch(error => {
+        axios.post(`${weatherURL}`, body)
+        .then(response => {
+        console.log("received response:", response)
+        const weatherData = response.data;
+
+        displayWeather(weatherData);
+    })
+        .catch(error => {
         console.error('Error:', error);
     });
 }
 
-form.addEventListener('submit', submitHndlr)
-saved.addEventListener('click', getSaved)
 
-//need to grab aside for create and delete functions
+const addToSaved = event => {
+    event.preventDefault();
+    const data = event.target;
+    const savedLocation = data.value;
+    const cityName = data.name;
+    console.log("saved location:", savedLocation)
 
-// function addItem() {
-//     const newLocation = document.createElement('<p>');
-// newItem.textContent = userInput.value;
-// newItem.addEventListener("click", deleteItem);
-// list.appendChild(newItem);
-// userInput.value = " ";
-// count = count + 1;
-// changeMessage()
-// }
 
-// function deleteItem(event) {
-//     count = count - 1;
-//     event.target.remove();
-//     changeMessage();
-//   }
+    const savedCard = document.createElement('div');
+    savedCard.innerHTML = `<button class="saved-location" value=${savedLocation}>${cityName}</button>`
+
+    savedContainer.appendChild(savedCard);    
+};
+
+
+
+form.addEventListener('submit', submitHndlr);
+
+cardContainer.addEventListener('click', e => {
+    if(e.target.classList.contains("save-button")){
+        addToSaved(e)
+    }
+});
+
+savedContainer.addEventListener('click', getSaved);

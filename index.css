@@ -38,7 +38,7 @@ header {
     margin: 50px;
 }
 
-aside{
+.saved-location{
     border-radius: 20px;
     width: 150px;
     height: min-content;
